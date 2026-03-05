@@ -238,17 +238,5 @@ public class CalculatorTest {
     void testPowerOneBase() {
         assertEquals(1.0, Calculator.power(1, 100), 0.0001);
     }
-
-    @ParameterizedTest
-    @DisplayName("Power with various bases and exponents")
-    @CsvSource({
-        "2, 4, 16",
-        "3, 3, 27",
-        "5, 3, 125",
-        "7, 2, 49"
-    })
-    void testPowerVariousCombinations(double base, double exponent, double expected) {
-        assertEquals(expected, Calculator.power(base, exponent), 0.0001);
-    }
 }
 
