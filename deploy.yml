@@ -1,0 +1,23 @@
+---
+- name: Deploy Scientific Calculator Locally
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Stop and remove existing container if it exists
+      docker_container:
+        name: calculator-app
+        state: absent
+
+    - name: Pull the latest image from Docker Hub
+      docker_image:
+        name: "adithya952/scientific-calculator:latest"
+        source: pull
+
+    - name: Run the new container
+      docker_container:
+        name: calculator-app
+        image: "adithya952/scientific-calculator:latest"
+        state: started
+        # Map the internal port to your local machine port
+        ports:
+          - "8080:8080"
