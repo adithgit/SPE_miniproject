@@ -2,9 +2,6 @@ package org.example;
 
 import java.util.Scanner;
 
-/**
- * Interactive Calculator application
- */
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
 
