@@ -52,9 +52,9 @@ pipeline {
 
         stage('Trigger Deployment') {
             steps {
-                // This stage will later call your Ansible playbook [cite: 17, 18]
-                echo 'Ready for Ansible Deployment'
-            }
+                    // -i localhost, (with the comma) tells ansible to use localhost as inventory
+                    sh 'ansible-playbook -i localhost, deploy.yml'
+                    }
         }
     }
 }
