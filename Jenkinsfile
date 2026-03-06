@@ -52,9 +52,21 @@ pipeline {
 
         stage('Trigger Deployment') {
             steps {
-                    // -i localhost, (with the comma) tells ansible to use localhost as inventory
                     sh 'ansible-playbook -i localhost, deploy.yml'
                     }
         }
+
+        post {
+                success {
+                    mail to: 'adithyaudayan952@gmail.com',
+                         subject: "✅ SUCCESS: Pipeline ${currentBuild.fullDisplayName}",
+                         body: "Good news! The Scientific Calculator build and local deployment passed successfully.\n\nYou can view the build logs here: ${env.BUILD_URL}"
+                }
+                failure {
+                    mail to: 'adithyaudayan952@gmail.com',
+                         subject: "❌ FAILED: Pipeline ${currentBuild.fullDisplayName}",
+                         body: "Oops! The Scientific Calculator pipeline failed.\n\nPlease check the Jenkins console output to see which stage caused the error: ${env.BUILD_URL}"
+                }
+            }
     }
 }
