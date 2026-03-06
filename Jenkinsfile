@@ -46,7 +46,7 @@ pipeline {
 
         stage('Trigger Deployment') {
             steps {
-                sh 'ansible-playbook -i localhost, deploy.yml'
+                sh 'ansible-playbook -i inventory.ini deploy.yml'
             }
         }
     } // <--- 'stages' block ends here!
